@@ -1,0 +1,11 @@
+canvas {
+    background-color: grey;
+}
+#container {
+    margin: 20px;
+    width: 960px;
+}
+.controls, .canvas {
+    display: inline-block;
+    vertical-align: middle;
+}
