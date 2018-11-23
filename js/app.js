@@ -1,9 +1,10 @@
 $(function () {
-    var xVal = 150;
-    var yVal = 150;
+    var xVal = 200;
+    var yVal = 200;
     var rVal = 100;
-
-    drawCircle(150, 150, 100, 'canvas');
+    console.log("hello");
+    drawCircle(200, 200, 100, 'canvas');
+    console.log("Olá");
     $('#radius').change(function () {
         $('#rVal').text($(this).val());
         rVal = $(this).val();
@@ -11,17 +12,17 @@ $(function () {
 
     });
 
-    $('#x').change(function () {
-        $('#xVal').text($(this).val());
-        xVal = $(this).val();
-        drawCircle(xVal, yVal, rVal, 'canvas');
-    });
-
-    $('#y').change(function () {
-        $('#yVal').text($(this).val());
-        yVal = $(this).val();
-        drawCircle(xVal, yVal, rVal, 'canvas');
-    });
+    // $('#x').change(function () {
+    //     $('#xVal').text($(this).val());
+    //     xVal = $(this).val();
+    //     drawCircle(xVal, yVal, rVal, 'canvas');
+    // });
+    //
+    // $('#y').change(function () {
+    //     $('#yVal').text($(this).val());
+    //     yVal = $(this).val();
+    //     drawCircle(xVal, yVal, rVal, 'canvas');
+    // });
 
 });
 
