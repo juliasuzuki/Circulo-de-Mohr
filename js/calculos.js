@@ -1,29 +1,29 @@
 
-$(function () {
+
 function degrees_to_radians(degrees)
 {
   var pi = Math.PI;
   return degrees * (pi/180);
 }
-
+//class Circleclass{
     // =======================  Constructor  =========================
     // Protected: tipo de public restrito as subclasses
-    function CreateVariable(sigmax, sigmay, tauxy, theta){
+     function Circle(sigmax, sigmay, tauxy, theta){
         // '''* TensÃ£o normal na direÃ§Ã£o x'''
-        this._sigmax= sigmax
+        this._sigmax= sigmax;
         // ''' * TensÃ£o normal na direÃ§Ã£o y '''
-        this._sigmay= sigmay
+        this._sigmay= sigmay;
         // ''' * TensÃ£o de cisalhamento '''
-        this._tauxy= tauxy
+        this._tauxy= tauxy;
         // '''* Ã‚ngulo da normal do plano em relaÃ§Ã£o ao eixo x (no sentido anti-horÃ¡rio) '''
-        this._theta= theta
+        this._theta= theta;
         console.log(this._sigmax, this._sigmay,this._tauxy,this._theta);
         return this;
     }
     // =======================  Constructor  =========================*/
     // **  * Cria um objeto p com valores default.
 
-    var p=CreateVariable( 100.0, 50.0, 25.0, degrees_to_radians(52.0));
+    var p= new Circle( 100.0, 50.0, 25.0, degrees_to_radians(52.0));
     console.log("Olá",p._sigmax, p._sigmay, p._tauxy, p._theta);
 
     /*======================  ChkNullStateStr  ========================*/
@@ -33,7 +33,6 @@ function degrees_to_radians(degrees)
 
      function _ChkNullStateStr( sigmax, sigmay, tauxy ){
         if (Math.sqrt(sigmax*sigmax + sigmay*sigmay + tauxy*tauxy) < 0.1){
-            console.log("Não é nulo")
             return True
           }
         else{
@@ -292,4 +291,4 @@ function degrees_to_radians(degrees)
     }
 
 
-  });
+//}
