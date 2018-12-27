@@ -5,33 +5,37 @@
     <link rel="stylesheet" href="styles.css">
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/calculos.js"> </script>
+    <script src="js/p5/p5.js"></script>
+    <!-- <script src="js/p5/p5.min.js"></script> -->
+    <script src="js/p5/addons/p5.dom.js"></script>
+    <script src="js/Circle.js"> </script>
     <script src="js/app.js"> </script>
     <title>Circulo de Mohr</title>
   </head>
   <body>
     <h1> Seja Bem-vindo! </h1>
     <div id="container">
-      <div class="canvas">
+      <!-- <div class="canvas">
           <canvas id="canvas" width="400" height="400"></canvas>
-      </div>
+      </div> -->
+
       <div class="controls">
           <ul>
-              <li> <span>Radius:</span>
+              <li> <span>Sigma X:</span>
 
-                  <input type="number" id="radius" value="100" min="10" max="200" step="1"> <span id="rVal">100</span>
-
-              </li>
-              <!-- <li> <span>center x:</span>
-
-                  <input type="number" id="x" value="100" min="10" max="200" step="1"> <span id="xVal">100</span>
+                  <input type="number" id="sigmax" value="100" min="10" max="200" step="1"> <span id="rVal">100</span>
 
               </li>
-              <li> <span>center y:</span>
+             <li> <span>Sigma Y:</span>
 
-                  <input type="number" id="y" value="100" min="10" max="200" step="1"> <span id="yVal">100</span>
+                  <input type="number" id="sigmay" value="100" min="10" max="200" step="1"> <span id="xVal">100</span>
 
-              </li> -->
+              </li>
+              <li> <span>Tau xy:</span>
+
+                  <input type="number" id="tauxy" value="100" min="10" max="200" step="1"> <span id="yVal">100</span>
+
+              </li>
           </ul>
       </div>
   </div>

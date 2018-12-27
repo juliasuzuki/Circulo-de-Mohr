@@ -1,38 +1,50 @@
 
+let circle1;
+
+function setup() {
+  createCanvas(400,400)
+  circle1 = new Circle(100,50,25,degrees_to_radians(50));
+}
+function draw(){
+  background(0);
+  var xc=(circle1.sigmax+circle1.sigmay)/2
+  console.log(xc);
+  ellipse(200+xc, 200+0,circle1.Radius());
+}
+
 
 function degrees_to_radians(degrees)
 {
   var pi = Math.PI;
   return degrees * (pi/180);
 }
-//class Circleclass{
+class Circle{
     // =======================  Constructor  =========================
     // Protected: tipo de public restrito as subclasses
-     function Circle(sigmax, sigmay, tauxy, theta){
+     constructor(sigmax, sigmay, tauxy, theta){
         // '''* TensÃ£o normal na direÃ§Ã£o x'''
-        this._sigmax= sigmax;
+        this.sigmax= sigmax;
         // ''' * TensÃ£o normal na direÃ§Ã£o y '''
-        this._sigmay= sigmay;
+        this.sigmay= sigmay;
         // ''' * TensÃ£o de cisalhamento '''
-        this._tauxy= tauxy;
+        this.tauxy= tauxy;
         // '''* Ã‚ngulo da normal do plano em relaÃ§Ã£o ao eixo x (no sentido anti-horÃ¡rio) '''
-        this._theta= theta;
-        console.log(this._sigmax, this._sigmay,this._tauxy,this._theta);
+        this.theta= theta;
+        console.log(this.sigmax, this.sigmay,this.tauxy,this.theta);
         return this;
     }
     // =======================  Constructor  =========================*/
     // **  * Cria um objeto p com valores default.
 
-    var p= new Circle( 100.0, 50.0, 25.0, degrees_to_radians(52.0));
-    console.log("Olá",p._sigmax, p._sigmay, p._tauxy, p._theta);
+
 
     /*======================  ChkNullStateStr  ========================*/
 
     // * Verifica se as componentes de tensÃ£o passadas como parÃ¢metros
     //   foram um estado de tensÃµes nulo.
 
-     function _ChkNullStateStr( sigmax, sigmay, tauxy ){
-        if (Math.sqrt(sigmax*sigmax + sigmay*sigmay + tauxy*tauxy) < 0.1){
+      ChkNullStateStr(){
+        if (Math.sqrt(this.sigmax*this.sigmax + this.sigmay*this.sigmay + this.tauxy*this.tauxy) < 0.1){
             return True
           }
         else{
@@ -43,19 +55,19 @@ function degrees_to_radians(degrees)
     // **
     //   * Inicializa os parÃ¢metros do objeto MohrSolver com valores default.
 
-     function ResetSolver(){
-        sigmax = 100.0
-        sigmay = 50.0
-        tauxy = 25.0
-        theta = degrees_to_radians( 52.0 )
+     ResetSolver(){
+        this.sigmax = 100.0
+        this.sigmay = 50.0
+        this.tauxy = 25.0
+        this.theta = degrees_to_radians( 52.0 )
     }
 
-     function setSigmaX( t, sigmax ){
-        if (_ChkNullStateStr( sigmax, t._sigmay, t._tauxy )){
+     setSigmaX( t, sigmax ){
+        if (ChkNullStateStr( sigmax, t.sigmay, t.tauxy )){
             return
           }
         else{
-            t._sigmax = sigmax
+            t.sigmax = sigmax
           }
 }
 
@@ -63,12 +75,12 @@ function degrees_to_radians(degrees)
     //  **
     //   * Altera o valor corrente da tensÃ£o normal sigmay.
 
-     function setSigmaY( t, sigmay ){
-        if (_ChkNullStateStr( t._sigmax, sigmay, t._tauxy )){
+     setSigmaY( t, sigmay ){
+        if (ChkNullStateStr( t.sigmax, sigmay, t.tauxy )){
             return
           }
         else{
-            t._sigmay = sigmay
+            t.sigmay = sigmay
           }
 
     }
@@ -76,12 +88,12 @@ function degrees_to_radians(degrees)
     // **
     //   * Altera o valor corrente da tensÃ£o de cisalhamento tauxy.
 
-     function setTauXY( t, tauxy ){
-        if (_ChkNullStateStr( t._sigmax, t._sigmay, tauxy )){
+     setTauXY( t, tauxy ){
+        if (ChkNullStateStr( t.sigmax, t.sigmay, tauxy )){
             return
           }
         else{
-            t._tauxy = tauxy
+            t.tauxy = tauxy
           }
 
     }
@@ -91,7 +103,7 @@ function degrees_to_radians(degrees)
      //  * resposta (em radianos).  O valor do Ã¢ngulo Ã© sempre
      //  * transformado para a faixa entre 0 e 180 graus.
 
-    function setTheta( t, theta ){
+    setTheta( t, theta ){
 
          // Primeiro corrige o Ã¢ngulo para um valor com
          //     * mÃ³dulo menor que 360 graus.
@@ -108,23 +120,23 @@ function degrees_to_radians(degrees)
             theta = theta - Math.p
           }
 
-        t._theta = theta
+        t.theta = theta
   }
 
 
     // ========================  getSigmaX  =========================
      //  * Retorna o valor corrente da tensÃ£o normal sigmax.
-    function getSigmaX(self){
+    getSigmaX(){
 
-         return self._sigmax;
+         return this.sigmax;
        }
 
      // ========================  getSigmaY  =========================
       // * Retorna o valor corrente da tensÃ£o normal sigmay.
 
-    function getSigmaY(self){
+    getSigmaY(){
 
-        return self._sigmay;
+        return this.sigmay;
       }
 
 
@@ -132,9 +144,9 @@ function degrees_to_radians(degrees)
      // **
      //  * Retorna o valor corrente da tensÃ£o de cisalhamento.
 
-    function getTauXY(self){
+    getTauXY(){
 
-        return self._tauxy;
+        return this.tauxy;
       }
 
      // ========================  getTheta  =========================
@@ -142,47 +154,47 @@ function degrees_to_radians(degrees)
      //  * Retorna o valor corrente do Ã¢ngulo que define a direÃ§Ã£o do
      //  * plano de resposta (em radianos).
 
-    function getTheta(self){
+    getTheta(){
 
-        return self._theta;
+        return this.theta;
       }
 
     // ========================  Center  =========================
     //   * Retorna o valor mÃ©dio da tensÃ£o normal do estado corrente.
-    function Center(self){
+    Center(){
 
-        return (self._sigmax + self._sigmay)*0.5;
+        return (this.sigmax + this.sigmay)*0.5;
       }
 
      // ========================  Radius  =========================
      //  * Retorna o valor do raio do cÃ­rculo de Mohr correspondente
      //  * ao estado de tensÃ£o corrente.
 
-    function Radius(self){ //Raio = tau max
-        sigmaux = Math.abs(self._sigmax - self._sigmay) * 0.5
+    Radius(){ //Raio = tau max
+        var sigmaux = Math.abs(this.sigmax - this.sigmay) * 0.5
 
-        return Math.sqrt(sigmaux*sigmaux + self._tauxy*self._tauxy);
+        return Math.sqrt(sigmaux*sigmaux + this.tauxy*this.tauxy);
       }
 
 
      // ========================  Sigma1  =========================
      //  * Retorna o valor da tensÃ£o normal mÃ¡xima do estado corrente.
 
-     function Sigma1( ){
+     Sigma1(){
       return( this.Center( ) + this.Radius( ) );
      }
 
      // ========================  Sigma2  =========================
      //  * Retorna o valor da tensÃ£o normal mÃ­nima do estado corrente.
 
-     function Sigma2( ){
+     Sigma2(){
       return( this.Center( ) - this.Radius( ) );
      }
 
      // ========================  TauMax  =========================
      //  * Retorna o valor mÃ¡ximo em mÃ³dulo da tensÃ£o de cisalhamento.
 
-     function TauMax( ){
+     TauMax(){
       return( this.Radius( ) );
      }
 
@@ -190,7 +202,7 @@ function degrees_to_radians(degrees)
      //  * Retorna o valor da tensÃ£o normal no plano cuja normal Ã© defina
      //  * pelo valor corrente de theta.
 
-     function SigmaTheta(  ){
+     SigmaTheta(){
       var sigmaux = (sigmax - sigmay) * 0.5;
       var thetaux = 2.0*theta;
 
@@ -202,7 +214,7 @@ function degrees_to_radians(degrees)
      //  * Retorna o valor da tensÃ£o normal no plano cuja normal Ã© defina
      //  * pelo valor corrente de theta + 90 graus.
 
-     function SigmaTheta90(  ){
+     SigmaTheta90(){
       var sigmaux = (sigmax - sigmay) * 0.5;
       var thetaux = 2.0*(theta+(Math.PI/4.0));
 
@@ -214,7 +226,7 @@ function degrees_to_radians(degrees)
     //   * Retorna o valor da tensÃ£o de cisalhamento no plano cuja normal
     //   * Ã© defina pelo valor corrente de theta.
     //
-     function TauTheta(  ){
+     TauTheta(){
       var sigaux = (sigmax - sigmay) * 0.5;
       var thetaux = 2.0*theta;
 
@@ -228,7 +240,7 @@ function degrees_to_radians(degrees)
      //  * (em radianos).  O valor do Ã¢ngulo Ã© sempre transformado
      //  * para a faixa entre 0 e 180 graus.
 
-     function ThetaP(  ){
+     ThetaP(){
       var sigmaux = (sigmax - sigmay) * 0.5;
       var thetap;
 
@@ -260,7 +272,7 @@ function degrees_to_radians(degrees)
     //   * se verdadeiro, estado de tensÃµes corrente Ã© hidrostÃ¡tico,
     //   * se falso, nÃ£o Ã© hidrostÃ¡tico.
 
-     function IsHydrostatic( ){
+      IsHydrostatic(){
 
       if( (Math.abs( sigmax - sigmay ) < 0.01) &&
           (Math.abs( tauxy ) < 0.01) )
@@ -275,7 +287,7 @@ function degrees_to_radians(degrees)
      /**
       * Retorna coordenada horizontal do polo.
       */
-     function PoleX( ){
+     PoleX(){
       return( sigmay );
      }
 
@@ -283,7 +295,7 @@ function degrees_to_radians(degrees)
      /**
       * Retorna coordenada vertical do polo.
       */
-     function PoleY( ){
+     PoleY(){
      {
       return( -tauxy );
      }
@@ -291,4 +303,4 @@ function degrees_to_radians(degrees)
     }
 
 
-//}
+}
